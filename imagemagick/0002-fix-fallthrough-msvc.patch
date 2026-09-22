@@ -1,0 +1,14 @@
+diff --git a/MagickCore/method-attribute.h b/MagickCore/method-attribute.h
+index 9cc684e..4ff389b 100644
+--- a/MagickCore/method-attribute.h
++++ b/MagickCore/method-attribute.h
+@@ -104,7 +104,7 @@ extern "C" {
+ #else
+ #  define magick_alloc_size(x)  /* nothing */
+ #  define magick_alloc_sizes(x,y)  /* nothing */
+-#  if defined(_MSC_VER)
++#  if defined(_MSC_VER) && defined(__cplusplus) /* only defined in MSVC C++, not in C mode */
+ #    define magick_fallthrough [[fallthrough]]
+ #  else
+ #    define magick_fallthrough  /* nothing */
+ #  else

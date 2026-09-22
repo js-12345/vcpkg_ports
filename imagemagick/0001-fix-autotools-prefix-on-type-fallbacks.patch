@@ -1,0 +1,36 @@
+diff --git a/MagickCore/magick-config.h b/MagickCore/magick-config.h
+index 3ef9f85..ee8790f 100644
+--- a/MagickCore/magick-config.h
++++ b/MagickCore/magick-config.h
+@@ -24,6 +24,31 @@ extern "C" {
+ 
+ #include "MagickCore/magick-baseconfig.h"
+ 
++/* Compatibility block: AX_PREFIX_CONFIG_H (see configure.ac) prefixes every
++   define it copies out of config/config.h, including the AC_TYPE_SSIZE_T /
++   AC_TYPE_MODE_T / AC_TYPE_PID_T / AC_TYPE_UID_T / AC_C_RESTRICT fallback
++   defines used on platforms (MSVC) that don't provide these C types
++   natively. AX_PREFIX_CONFIG_H's own documentation calls out this exact
++   family of macro as needing to be unprefixed back manually. Without this,
++   the plain type names the rest of this codebase (and any consumer of these
++   public headers) uses are never actually defined on such platforms. */
++#if defined(_magickcore_ssize_t) && !defined(ssize_t)
++# define ssize_t ptrdiff_t
++#endif
++#if defined(_magickcore_pid_t) && !defined(pid_t)
++# define pid_t _magickcore_pid_t
++#endif
++#if defined(_magickcore_uid_t) && !defined(uid_t)
++# define uid_t _magickcore_uid_t
++#endif
++#if defined(_magickcore_gid_t) && !defined(gid_t)
++# define gid_t _magickcore_gid_t
++#endif
++#if defined(_magickcore_restrict) && !defined(restrict)
++# define restrict _magickcore_restrict
++#endif
++
++
+ #define MAGICKCORE_STRING_QUOTE(str) #str
+ #define MAGICKCORE_STRING_XQUOTE(str) MAGICKCORE_STRING_QUOTE(str)
+ 

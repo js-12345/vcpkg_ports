@@ -1,0 +1,7 @@
+{
+  "name": "imagemagick",
+  "version": "7.1.2-18",
+  "description": "Tools and libraries to create, edit, compose, and convert images",
+  "homepage": "https://imagemagick.org",
+  "license": "ImageMagick"
+}
