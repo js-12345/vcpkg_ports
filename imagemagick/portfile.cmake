@@ -9,12 +9,21 @@ vcpkg_from_github(
         0002-fix-fallthrough-msvc.patch
 )
 
+# -------------------------------
+# create configure options
+# -------------------------------
+
+# set default configure flags
 set(IM_CONFIGURE_ARGS "")
 list(APPEND IM_CONFIGURE_ARGS
     "--disable-docs"
     "--without-utilities"
     "--without-perl"
     "--disable-installed"
+)
+
+# to be added into features
+list(APPEND IM_CONFIGURE_ARGS
     "--without-bzlib"
     "--without-x"
     "--without-zip"
@@ -53,6 +62,10 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-xml"
 )
 
+# -------------------------------
+# run autotools/configure
+# -------------------------------
+
 vcpkg_configure_make(
     SOURCE_PATH "${SOURCE_PATH}"
     USE_WRAPPERS
@@ -60,8 +73,13 @@ vcpkg_configure_make(
         ${IM_CONFIGURE_ARGS}
 )
 
-#fixing windows problems
+# -------------------------------
+# fixing windows build problems
+# -------------------------------
+
 if(VCPKG_TARGET_IS_WINDOWS)
+
+    # emf.c uses c++ gdi so inject c++ flags into Makefile
     foreach(_config "rel" "dbg")
         set(_makefile "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-${_config}/Makefile")
         if(EXISTS "${_makefile}")
@@ -73,10 +91,21 @@ if(VCPKG_TARGET_IS_WINDOWS)
     endforeach()
 endif()
 
+# -------------------------------
+# build and install
+# -------------------------------
+
 vcpkg_build_make()
 vcpkg_install_make()
 vcpkg_fixup_pkgconfig()
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 
+# -------------------------------
+# fix/remove installed files
+# -------------------------------
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
+
+# be careful if there is stuff to be installed under tools
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/tools")
