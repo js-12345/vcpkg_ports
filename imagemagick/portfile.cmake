@@ -20,6 +20,7 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-utilities"
     "--without-perl"
     "--disable-installed"
+    "--without-modules"
 )
 
 # to be added into features
