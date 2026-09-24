@@ -6,7 +6,7 @@
   "license": "ImageMagick",
   "features": {
     "zero-configuration": {
-      "description": "Build a self-contained ImageMagick that embeds default colors, policy limits, delegate commands, and MIME/type tables at compile time instead of reading external XML config files at runtime"
+      "description": "Build a self-contained ImageMagick that embeds default colors, policy limits, delegate commands, and MIME/type tables at compile time instead of reading external XML config files at runtime; if disabled config files are saved under share/imagemagick/config"
     }
   }
 }

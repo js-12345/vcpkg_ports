@@ -127,29 +127,26 @@ file(GLOB im_tools_config_files
 )
 file(REMOVE ${im_tools_config_files})
 
-# remove xml config files if zero config is build
-if(ZERO_CONFIGURATION)
-    # config files under ./etc/ImageMagick-*
-    file(GLOB im_etc_config_files
-        "${CURRENT_PACKAGES_DIR}/etc/ImageMagick-*/*.xml"
-        "${CURRENT_PACKAGES_DIR}/debug/etc/ImageMagick-*/*.xml"
-    )
-    file(REMOVE ${im_etc_config_files})
+# look for config files spread in multiple paths and delete them; if not build with 'zero-configuration', collect them under same ./share/ path
+file(GLOB im_rel_config_files
+    "${CURRENT_PACKAGES_DIR}/etc/ImageMagick-*/*.xml"
+    "${CURRENT_PACKAGES_DIR}/lib/ImageMagick-*/config*/*.xml"
+    "${CURRENT_PACKAGES_DIR}/share/imagemagick/ImageMagick-*/*.xml"
+)
+file(GLOB im_dbg_config_files
+    "${CURRENT_PACKAGES_DIR}/debug/etc/ImageMagick-*/*.xml"
+    "${CURRENT_PACKAGES_DIR}/debug/lib/ImageMagick-*/config*/*.xml"
+    "${CURRENT_PACKAGES_DIR}/debug/share/imagemagick/ImageMagick-*/*.xml"
+)
 
-    # config files under ./lib/ImageMagick-*/config*
-    file(GLOB im_lib_config_files
-        "${CURRENT_PACKAGES_DIR}/lib/ImageMagick-*/config*/*.xml"
-        "${CURRENT_PACKAGES_DIR}/debug/lib/ImageMagick-*/config*/*.xml"
-    )
-    file(REMOVE ${im_lib_config_files})
-
-    # config files under ./share/imagemagick/ImageMagick
-    file(GLOB im_share_config_files
-        "${CURRENT_PACKAGES_DIR}/share/imagemagick/ImageMagick-*/*.xml"
-        "${CURRENT_PACKAGES_DIR}/debug/share/imagemagick/ImageMagick-*/*.xml"
-    )
-    file(REMOVE ${im_share_config_files})
+if(NOT ZERO_CONFIGURATION)
+    set(im_config_dest "${CURRENT_PACKAGES_DIR}/share/${PORT}/config")
+    file(MAKE_DIRECTORY "${im_config_dest}")
+    file(COPY ${im_rel_config_files} DESTINATION "${im_config_dest}")
 endif()
+
+file(REMOVE ${im_rel_config_files})
+file(REMOVE ${im_dbg_config_files})
 
 # adding function to remove empty dirs
 function(remove_empty_directories DIR)
