@@ -108,5 +108,29 @@ vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 
-# be careful if there is stuff to be installed under tools
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/tools")
+# remove unneeded compile config files under ./tools
+file(GLOB im_tools_config_files
+    "${CURRENT_PACKAGES_DIR}/tools/imagemagick/bin/*-config"
+    "${CURRENT_PACKAGES_DIR}/tools/imagemagick/debug/bin/*-config"
+)
+file(REMOVE ${im_tools_config_files})
+
+# adding function to remove empty dirs
+function(remove_empty_directories DIR)
+    file(GLOB _red_files "${DIR}/*")
+
+    foreach(_red_file IN LISTS _red_files)
+        if(IS_DIRECTORY "${_red_file}")
+            remove_empty_directories("${_red_file}")
+        endif()
+    endforeach()
+
+    file(GLOB _red_still_rem_files "${DIR}/*")
+
+    if(NOT _red_still_rem_files)
+        file(REMOVE_RECURSE "${DIR}")
+    endif()
+endfunction()
+
+# removing all empty dirs in install location
+remove_empty_directories("${CURRENT_PACKAGES_DIR}")
