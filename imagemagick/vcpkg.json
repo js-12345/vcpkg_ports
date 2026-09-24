@@ -3,5 +3,10 @@
   "version": "7.1.2-18",
   "description": "Tools and libraries to create, edit, compose, and convert images",
   "homepage": "https://imagemagick.org",
-  "license": "ImageMagick"
+  "license": "ImageMagick",
+  "features": {
+    "zero-configuration": {
+      "description": "Build a self-contained ImageMagick that embeds default colors, policy limits, delegate commands, and MIME/type tables at compile time instead of reading external XML config files at runtime"
+    }
+  }
 }

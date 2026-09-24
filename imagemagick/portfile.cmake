@@ -23,6 +23,18 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-modules"
 )
 
+# search for features
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        "zero-configuration" ZERO_CONFIGURATION
+)
+
+if(ZERO_CONFIGURATION)
+    list(APPEND IM_CONFIGURE_ARGS "--enable-zero-configuration")
+else()
+    list(APPEND IM_CONFIGURE_ARGS "--disable-zero-configuration")
+endif()
+
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
     "--without-bzlib"
@@ -114,6 +126,30 @@ file(GLOB im_tools_config_files
     "${CURRENT_PACKAGES_DIR}/tools/imagemagick/debug/bin/*-config"
 )
 file(REMOVE ${im_tools_config_files})
+
+# remove xml config files if zero config is build
+if(ZERO_CONFIGURATION)
+    # config files under ./etc/ImageMagick-*
+    file(GLOB im_etc_config_files
+        "${CURRENT_PACKAGES_DIR}/etc/ImageMagick-*/*.xml"
+        "${CURRENT_PACKAGES_DIR}/debug/etc/ImageMagick-*/*.xml"
+    )
+    file(REMOVE ${im_etc_config_files})
+
+    # config files under ./lib/ImageMagick-*/config*
+    file(GLOB im_lib_config_files
+        "${CURRENT_PACKAGES_DIR}/lib/ImageMagick-*/config*/*.xml"
+        "${CURRENT_PACKAGES_DIR}/debug/lib/ImageMagick-*/config*/*.xml"
+    )
+    file(REMOVE ${im_lib_config_files})
+
+    # config files under ./share/imagemagick/ImageMagick
+    file(GLOB im_share_config_files
+        "${CURRENT_PACKAGES_DIR}/share/imagemagick/ImageMagick-*/*.xml"
+        "${CURRENT_PACKAGES_DIR}/debug/share/imagemagick/ImageMagick-*/*.xml"
+    )
+    file(REMOVE ${im_share_config_files})
+endif()
 
 # adding function to remove empty dirs
 function(remove_empty_directories DIR)
