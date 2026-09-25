@@ -1,0 +1,23 @@
+diff --git a/configure b/configure
+index 4bb55fcc5..c9993d1ff 100755
+--- a/configure
++++ b/configure
+@@ -29426,12 +29426,12 @@ esac
+ fi
+ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $im_cv_x_configure" >&5
+ printf "%s\n" "$im_cv_x_configure" >&6; }
+-X11_CONFIGURE_PATH="$im_cv_x_configure"
+-case "${build_os}" in
+-  mingw* )
+-    X11ConfigurePath=`$WinPathScript "$X11ConfigurePath=" 1`
+-  ;;
+-esac
++X11ConfigurePath="$im_cv_x_configure"
++#case "${build_os}" in
++#  mingw* )
++#    X11ConfigurePath=`$WinPathScript "$X11ConfigurePath=" 1`
++#  ;;
++#esac
+ 
+ printf "%s\n" "#define X11_CONFIGURE_PATH \"$X11ConfigurePath\"" >>confdefs.h
+ 

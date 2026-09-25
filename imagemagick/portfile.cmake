@@ -7,6 +7,7 @@ vcpkg_from_github(
     PATCHES
         0001-fix-autotools-prefix-on-type-fallbacks.patch
         0002-fix-fallthrough-msvc.patch
+        0003-fix-winpath-malformed-path-define.patch
 )
 
 # -------------------------------
