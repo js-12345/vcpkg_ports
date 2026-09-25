@@ -26,13 +26,13 @@ list(APPEND IM_CONFIGURE_ARGS
 # search for features
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
-        "zero-configuration" ZERO_CONFIGURATION
+        "disable-zero-config" DISABLE_ZERO_CONFIG
 )
 
-if(ZERO_CONFIGURATION)
-    list(APPEND IM_CONFIGURE_ARGS "--enable-zero-configuration")
-else()
+if(DISABLE_ZERO_CONFIG)
     list(APPEND IM_CONFIGURE_ARGS "--disable-zero-configuration")
+else()
+    list(APPEND IM_CONFIGURE_ARGS "--enable-zero-configuration")
 endif()
 
 # to be added into features
@@ -133,19 +133,15 @@ file(GLOB im_rel_config_files
     "${CURRENT_PACKAGES_DIR}/lib/ImageMagick-*/config*/*.xml"
     "${CURRENT_PACKAGES_DIR}/share/imagemagick/ImageMagick-*/*.xml"
 )
+if(NOT DISABLE_ZERO_CONFIG)
+    file(REMOVE ${im_rel_config_files})
+endif()
+
 file(GLOB im_dbg_config_files
     "${CURRENT_PACKAGES_DIR}/debug/etc/ImageMagick-*/*.xml"
     "${CURRENT_PACKAGES_DIR}/debug/lib/ImageMagick-*/config*/*.xml"
     "${CURRENT_PACKAGES_DIR}/debug/share/imagemagick/ImageMagick-*/*.xml"
 )
-
-if(NOT ZERO_CONFIGURATION)
-    set(im_config_dest "${CURRENT_PACKAGES_DIR}/share/${PORT}/config")
-    file(MAKE_DIRECTORY "${im_config_dest}")
-    file(COPY ${im_rel_config_files} DESTINATION "${im_config_dest}")
-endif()
-
-file(REMOVE ${im_rel_config_files})
 file(REMOVE ${im_dbg_config_files})
 
 # adding function to remove empty dirs

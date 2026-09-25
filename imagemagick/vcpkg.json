@@ -5,8 +5,8 @@
   "homepage": "https://imagemagick.org",
   "license": "ImageMagick",
   "features": {
-    "zero-configuration": {
-      "description": "Build a self-contained ImageMagick that embeds default colors, policy limits, delegate commands, and MIME/type tables at compile time instead of reading external XML config files at runtime; if disabled config files are saved under share/imagemagick/config"
+    "disable-zero-config": {
+      "description": "Use external XML configuration files (policy limits, delegate commands, color/MIME tables) instead of the compiled-in zero-configuration defaults. The consumer is responsible for making these files discoverable at runtime (e.g. via environment variables)."
     }
   }
 }
