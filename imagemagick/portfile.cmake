@@ -30,11 +30,25 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "disable-zero-config" DISABLE_ZERO_CONFIG
 )
 
-if(DISABLE_ZERO_CONFIG)
-    list(APPEND IM_CONFIGURE_ARGS "--disable-zero-configuration")
-else()
-    list(APPEND IM_CONFIGURE_ARGS "--enable-zero-configuration")
-endif()
+# create feature adding macros
+macro(im_add_configure_arg _prefix _configure_name)
+    if(${ARGN})
+        list(APPEND IM_CONFIGURE_ARGS "--${_prefix}-${_configure_name}=yes")
+    else()
+        list(APPEND IM_CONFIGURE_ARGS "--${_prefix}-${_configure_name}=no")
+    endif()
+endmacro()
+
+# adding convenience macros
+macro(im_add_configure_enable_var _configure_name)
+    im_add_configure_arg("enable" "${_configure_name}" ${ARGN})
+endmacro()
+macro(im_add_configure_with_var _configure_name)
+    im_add_configure_arg("with" "${_configure_name}" ${ARGN})
+endmacro()
+
+# features enabling/disabling/with/without from vcpkg feature
+im_add_configure_enable_var("zero-configuration" NOT ${DISABLE_ZERO_CONFIG})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
