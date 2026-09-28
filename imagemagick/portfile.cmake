@@ -24,10 +24,13 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-modules"
 )
 
+set(QUANTUM_DEPTH 16) # 16 is default
+
 # search for features
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
-        "disable-zero-config" DISABLE_ZERO_CONFIG
+        "disable-zero-config"   DISABLE_ZERO_CONFIG
+        "hdri"                  ENABLE_HDRI
 )
 
 # create feature adding macros
@@ -49,10 +52,10 @@ endmacro()
 
 # features enabling/disabling/with/without from vcpkg feature
 im_add_configure_enable_var("zero-configuration" NOT ${DISABLE_ZERO_CONFIG})
+im_add_configure_enable_var("hdri" ${ENABLE_HDRI})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--enable-hdri"
     "--with-quantum-depth=16"
     "--disable-openmp"
     "--disable-opencl"
@@ -109,6 +112,13 @@ vcpkg_configure_make(
 # fixing windows build problems
 # -------------------------------
 
+# generating lib name from current config
+set(_im_abi_name "Q${QUANTUM_DEPTH}")
+if(ENABLE_HDRI)
+    string(APPEND _im_abi_name "HDRI")
+endif()
+
+# windows fixes
 if(VCPKG_TARGET_IS_WINDOWS)
 
     # emf.c uses c++ gdi so inject c++ flags into Makefile
@@ -117,7 +127,7 @@ if(VCPKG_TARGET_IS_WINDOWS)
         if(EXISTS "${_makefile}")
             file(APPEND "${_makefile}"
                 "\n# emf.c genuinely needs C++ mode (uses the GDI+ C++ API)\n"
-                "coders/MagickCore_libMagickCore_7_Q16HDRI_la-emf.lo: CFLAGS += -TP\n"
+                "coders/MagickCore_libMagickCore_7_${_im_abi_name}_la-emf.lo: CFLAGS += -TP\n"
             )
         endif()
     endforeach()
