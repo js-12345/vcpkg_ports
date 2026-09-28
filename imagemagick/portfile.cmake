@@ -119,6 +119,7 @@ vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 # fix/remove installed files
 # -------------------------------
 
+# no share for debug
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 
 # remove unneeded compile config files under ./tools
@@ -128,7 +129,7 @@ file(GLOB im_tools_config_files
 )
 file(REMOVE ${im_tools_config_files})
 
-# look for config files spread in multiple paths and delete them; if not build with 'zero-configuration', collect them under same ./share/ path
+# look for config files spread in multiple paths and delete them, if not build with 'disable-zero-config'
 file(GLOB im_rel_config_files
     "${CURRENT_PACKAGES_DIR}/etc/ImageMagick-*/*.xml"
     "${CURRENT_PACKAGES_DIR}/lib/ImageMagick-*/config*/*.xml"
