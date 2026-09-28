@@ -1,3 +1,8 @@
+
+# -------------------------------
+# download source from github repo, current version 7
+# -------------------------------
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO ImageMagick/ImageMagick
