@@ -11,6 +11,15 @@
     },
     "hdri": {
         "description": "High Dynamic Range Imaging: Quantum is a floating-point type, so pixel values can leave the normal range without clipping. Uses more memory. Changes the library ABI suffix."
+    },
+    "q8": {
+        "description": "Use 8 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix."
+    },
+    "q16": {
+        "description": "Use 16 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix. (Default)"
+    },
+    "q32": {
+        "description": "Use 32 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix."
     }
   }
 }

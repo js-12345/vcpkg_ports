@@ -36,6 +36,9 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
         "disable-zero-config"   DISABLE_ZERO_CONFIG
         "hdri"                  ENABLE_HDRI
+        "q8"                    USE_Q_8
+        "q16"                   USE_Q_16
+        "q32"                   USE_Q_32
 )
 
 # create feature adding macros
@@ -55,13 +58,26 @@ macro(im_add_configure_with_var _configure_name)
     im_add_configure_arg("with" "${_configure_name}" ${ARGN})
 endmacro()
 
+# check/generate quantum depth config
+set(_q_alredy_set OFF)
+foreach(_q IN ITEMS 8 16 32)
+    if(${USE_Q_${_q}})
+        if(_q_alredy_set)
+            message(FATAL_ERROR "Quantom depth options q${QUANTUM_DEPTH} and q${_q} are mutually exclusive")
+        endif()
+
+        set(QUANTUM_DEPTH ${_q})
+        set(_q_alredy_set ON)
+    endif()
+endforeach()
+list(APPEND IM_CONFIGURE_ARGS "--with-quantum-depth=${QUANTUM_DEPTH}")
+
 # features enabling/disabling/with/without from vcpkg feature
 im_add_configure_enable_var("zero-configuration" NOT ${DISABLE_ZERO_CONFIG})
 im_add_configure_enable_var("hdri" ${ENABLE_HDRI})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--with-quantum-depth=16"
     "--disable-openmp"
     "--disable-opencl"
     "--without-bzlib"
