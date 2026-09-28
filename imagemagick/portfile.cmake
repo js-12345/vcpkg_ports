@@ -38,6 +38,10 @@ endif()
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
+    "--enable-hdri"
+    "--with-quantum-depth=16"
+    "--disable-openmp"
+    "--disable-opencl"
     "--without-bzlib"
     "--without-x"
     "--without-zip"
