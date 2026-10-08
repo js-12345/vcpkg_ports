@@ -27,6 +27,7 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-perl"
     "--disable-installed"
     "--without-modules"
+    "--disable-opencl"
 )
 
 set(QUANTUM_DEPTH 16) # 16 is default
@@ -80,7 +81,6 @@ im_add_configure_enable_var("openmp" ${ENABLE_OPENMP})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--disable-opencl"
     "--without-bzlib"
     "--without-x"
     "--without-zip"
