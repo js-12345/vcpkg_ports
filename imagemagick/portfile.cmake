@@ -39,6 +39,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "q8"                    USE_Q_8
         "q16"                   USE_Q_16
         "q32"                   USE_Q_32
+        "openmp"                ENABLE_OPENMP
 )
 
 # create feature adding macros
@@ -75,10 +76,10 @@ list(APPEND IM_CONFIGURE_ARGS "--with-quantum-depth=${QUANTUM_DEPTH}")
 # features enabling/disabling/with/without from vcpkg feature
 im_add_configure_enable_var("zero-configuration" NOT ${DISABLE_ZERO_CONFIG})
 im_add_configure_enable_var("hdri" ${ENABLE_HDRI})
+im_add_configure_enable_var("openmp" ${ENABLE_OPENMP})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--disable-openmp"
     "--disable-opencl"
     "--without-bzlib"
     "--without-x"
