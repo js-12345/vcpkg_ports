@@ -17,7 +17,7 @@ index 3ef9f85..ee8790f 100644
 +#if defined(_magickcore_ssize_t) && !defined(ssize_t)
 +# define ssize_t ptrdiff_t
 +#endif
-+#if defined(_magickcore_pid_t) && !defined(pid_t)
++#if defined(_magickcore_pid_t) && !defined(pid_t) && !defined(MAGICKCORE_HAVE_PTHREAD)
 +# define pid_t _magickcore_pid_t
 +#endif
 +#if defined(_magickcore_uid_t) && !defined(uid_t)

@@ -1,0 +1,13 @@
+diff --git a/configure.ac b/configure.ac
+index 05f37306c..10c190e40 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -470,6 +470,8 @@ if test "$with_threads" != 'no'; then
+             CC="$PTHREAD_CC"
+         fi
+         AC_DEFINE([THREAD_SUPPORT],[1],[Define if you have POSIX threads libraries and header files.])
++    else
++        AC_MSG_ERROR([POSIX threads were enabled but not found.])
+     fi
+ fi
+ LIBS="$LIBS $THREAD_LIBS"

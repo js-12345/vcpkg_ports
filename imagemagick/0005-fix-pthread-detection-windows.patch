@@ -1,0 +1,16 @@
+diff --git a/configure.ac b/configure.ac
+index 05f37306c..f18b18a66 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -458,6 +458,11 @@ AC_ARG_WITH([threads],
+ THREAD_LIBS=''
+ have_threads=no
+ if test "$with_threads" != 'no'; then
++    PKG_CHECK_MODULES([PTHREAD_STUBS], [pthread-stubs], [
++        PTHREAD_CFLAGS="$PTHREAD_STUBS_CFLAGS"
++        PTHREAD_LIBS="$PTHREAD_STUBS_LIBS"
++    ])
++
+     AX_PTHREAD()
+     if test "$ax_pthread_ok" = yes; then
+         have_threads=yes
