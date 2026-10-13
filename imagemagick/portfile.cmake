@@ -126,6 +126,7 @@ list(APPEND IM_CONFIGURE_ARGS
 vcpkg_configure_make(
     SOURCE_PATH "${SOURCE_PATH}"
     USE_WRAPPERS
+    AUTOCONFIG
     OPTIONS
         ${IM_CONFIGURE_ARGS}
 )
