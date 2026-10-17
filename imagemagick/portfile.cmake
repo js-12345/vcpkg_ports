@@ -15,6 +15,7 @@ vcpkg_from_github(
         0003-fix-winpath-malformed-path-define.patch
         0004-error-on-enabled-but-not-found.patch
         0005-fix-pthread-detection-windows.patch
+        0006-fix-openmp-lib-detection-windows.patch
 )
 
 # -------------------------------

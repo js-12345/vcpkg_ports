@@ -1,0 +1,43 @@
+diff --git a/configure.ac b/configure.ac
+index 05f37306c..5f2d337db 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1300,20 +1300,24 @@ if test "${OPENMP_ENABLED}" = 'yes'; then
+         omp_set_num_threads(1);])],[GOMP_LIBS="-lgomp"],[])
+     fi
+   else
+-    # Sun CC
+-    if test "x$GOMP_LIBS" = x ; then
+-      AC_COMPILE_IFELSE([ AC_LANG_PROGRAM([#include <omp.h>], [
+-        omp_set_num_threads(1);])],[GOMP_LIBS="-lmtsk"],[])
+-    fi
+-    # AIX xlc
+-    if test "x$GOMP_LIBS" = x ; then
+-      AC_COMPILE_IFELSE([ AC_LANG_PROGRAM([#include <omp.h>], [
+-        omp_set_num_threads(1);])],[GOMP_LIBS="-lxmlsmp"],[])
+-    fi
+-    # SGI IRIX 6.5 MIPSpro C/C++
+-    if test "x$GOMP_LIBS" = x ; then
+-      AC_COMPILE_IFELSE([ AC_LANG_PROGRAM([#include <omp.h>], [
+-        omp_set_num_threads(1);])],[GOMP_LIBS="-lmp"],[])
++    if test "${native_win32_build}" = 'yes'; then
++        GOMP_LIBS=""; # Not gcc/clang --> assume msvc which bakes openmp lib into lib without nodefaultlib
++    else
++      # Sun CC
++      if test "x$GOMP_LIBS" = x ; then
++        AC_COMPILE_IFELSE([ AC_LANG_PROGRAM([#include <omp.h>], [
++          omp_set_num_threads(1);])],[GOMP_LIBS="-lmtsk"],[])
++      fi
++      # AIX xlc
++      if test "x$GOMP_LIBS" = x ; then
++        AC_COMPILE_IFELSE([ AC_LANG_PROGRAM([#include <omp.h>], [
++          omp_set_num_threads(1);])],[GOMP_LIBS="-lxmlsmp"],[])
++      fi
++      # SGI IRIX 6.5 MIPSpro C/C++
++      if test "x$GOMP_LIBS" = x ; then
++        AC_COMPILE_IFELSE([ AC_LANG_PROGRAM([#include <omp.h>], [
++          omp_set_num_threads(1);])],[GOMP_LIBS="-lmp"],[])
++      fi
+     fi
+   fi
+   AC_MSG_CHECKING([for OpenMP library ])

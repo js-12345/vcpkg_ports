@@ -31,7 +31,14 @@
         ]
     },
     "openmp": {
-        "description": "Enable OpenMP multi-threading."
+        "description": "Enable OpenMP multi-threading.",
+        "dependencies": [
+            {
+                "name": "imagemagick",
+                "features": ["pthread"],
+                "default-features": false
+            }
+        ]
     }
   }
 }
