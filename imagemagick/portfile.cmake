@@ -16,6 +16,7 @@ vcpkg_from_github(
         0004-error-on-enabled-but-not-found.patch
         0005-fix-pthread-detection-windows.patch
         0006-fix-openmp-lib-detection-windows.patch
+        0007-fix-bzip2-detection-windows.patch
 )
 
 # -------------------------------
@@ -45,6 +46,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "q32"                   USE_Q_32
         "pthread"               WITH_PTHREAD
         "openmp"                ENABLE_OPENMP
+        "bzip2"                 WITH_BZIP2
 )
 
 # create feature adding macros
@@ -83,10 +85,10 @@ im_add_configure_enable_var("zero-configuration" NOT ${DISABLE_ZERO_CONFIG})
 im_add_configure_enable_var("hdri" ${ENABLE_HDRI})
 im_add_configure_with_var  ("threads" ${WITH_PTHREAD})
 im_add_configure_enable_var("openmp" ${ENABLE_OPENMP})
+im_add_configure_with_var  ("bzlib" ${WITH_BZIP2})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--without-bzlib"
     "--without-x"
     "--without-zip"
     "--without-zlib"

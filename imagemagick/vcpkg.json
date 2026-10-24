@@ -39,6 +39,15 @@
                 "default-features": false
             }
         ]
+    },
+    "bzip2": {
+        "description": "Enable BZip2 compression support",
+        "dependencies": [
+            {
+                "name": "bzip2",
+                "default-features": false
+            }
+        ]
     }
   }
 }
