@@ -47,6 +47,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "pthread"               WITH_PTHREAD
         "openmp"                ENABLE_OPENMP
         "bzip2"                 WITH_BZIP2
+        "zlib"                  WITH_ZLIB
 )
 
 # create feature adding macros
@@ -86,12 +87,12 @@ im_add_configure_enable_var("hdri" ${ENABLE_HDRI})
 im_add_configure_with_var  ("threads" ${WITH_PTHREAD})
 im_add_configure_enable_var("openmp" ${ENABLE_OPENMP})
 im_add_configure_with_var  ("bzlib" ${WITH_BZIP2})
+im_add_configure_with_var  ("zlib" ${WITH_ZLIB})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
     "--without-x"
     "--without-zip"
-    "--without-zlib"
     "--without-zstd"
     "--without-autotrace"
     "--without-dps"
