@@ -50,6 +50,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "zlib"                  WITH_ZLIB
         "zstd"                  WITH_ZSTD
         "lzma"                  WITH_LZMA
+        "zip"                   WITH_ZIP
 )
 
 # create feature adding macros
@@ -92,11 +93,11 @@ im_add_configure_with_var  ("bzlib" ${WITH_BZIP2})
 im_add_configure_with_var  ("zlib" ${WITH_ZLIB})
 im_add_configure_with_var  ("zstd" ${WITH_ZSTD})
 im_add_configure_with_var  ("lzma" ${WITH_LZMA})
+im_add_configure_with_var  ("zip" ${WITH_ZIP})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
     "--without-x"
-    "--without-zip"
     "--without-autotrace"
     "--without-dps"
     "--without-fftw"
