@@ -44,6 +44,7 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-lqr"
     "--without-uhdr"
     "--without-wmf"
+    "--without-fftw"
 )
 
 set(QUANTUM_DEPTH 16) # 16 is default
@@ -109,7 +110,6 @@ im_add_configure_with_var  ("zip" ${WITH_ZIP})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--without-fftw"
     "--without-fontconfig"
     "--without-freetype"
     "--without-raqm"
