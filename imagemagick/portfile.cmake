@@ -49,6 +49,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "bzip2"                 WITH_BZIP2
         "zlib"                  WITH_ZLIB
         "zstd"                  WITH_ZSTD
+        "lzma"                  WITH_LZMA
 )
 
 # create feature adding macros
@@ -90,6 +91,7 @@ im_add_configure_enable_var("openmp" ${ENABLE_OPENMP})
 im_add_configure_with_var  ("bzlib" ${WITH_BZIP2})
 im_add_configure_with_var  ("zlib" ${WITH_ZLIB})
 im_add_configure_with_var  ("zstd" ${WITH_ZSTD})
+im_add_configure_with_var  ("lzma" ${WITH_LZMA})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
@@ -115,7 +117,6 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-lcms"
     "--without-openjp2"
     "--without-lqr"
-    "--without-lzma"
     "--without-openexr"
     "--without-pango"
     "--without-png"
