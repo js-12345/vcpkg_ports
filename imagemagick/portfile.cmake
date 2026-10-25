@@ -69,6 +69,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "fontconfig"            WITH_FONTCONFIG
         "raqm"                  WITH_RAQM
         "jpeg"                  WITH_JPEG
+        "openjp2"               WITH_OPENJP2
 )
 
 # create feature adding macros
@@ -117,6 +118,7 @@ im_add_configure_with_var  ("freetype" ${WITH_FREETYPE})
 im_add_configure_with_var  ("fontconfig" ${WITH_FONTCONFIG})
 im_add_configure_with_var  ("raqm" ${WITH_RAQM})
 im_add_configure_with_var  ("jpeg" ${WITH_JPEG})
+im_add_configure_with_var  ("openjp2" ${WITH_OPENJP2})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
@@ -125,7 +127,6 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-jbig"
     "--without-jxl"
     "--without-lcms"
-    "--without-openjp2"
     "--without-openexr"
     "--without-pango"
     "--without-raw"
