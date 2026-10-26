@@ -73,6 +73,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "heif"                  WITH_HEIF
         "lcms"                  WITH_LCMS
         "raw"                   WITH_RAW
+        "xml"                   WITH_XML
 )
 
 # create feature adding macros
@@ -125,6 +126,7 @@ im_add_configure_with_var  ("openjp2"    ${WITH_OPENJP2})
 im_add_configure_with_var  ("heic"       ${WITH_HEIF})
 im_add_configure_with_var  ("lcms"       ${WITH_LCMS})
 im_add_configure_with_var  ("raw"        ${WITH_RAW})
+im_add_configure_with_var  ("xml"        ${WITH_XML})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
@@ -136,7 +138,6 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-rsvg"
     "--without-tiff"
     "--without-webp"
-    "--without-xml"
 )
 
 # -------------------------------
