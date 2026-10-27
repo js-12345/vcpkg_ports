@@ -123,6 +123,10 @@
     "pango": {
         "description": "Enable pango support",
         "dependencies": ["pango"]
+    },
+    "rsvg": {
+        "description": "Enable librsvg support",
+        "dependencies": ["librsvg"]
     }
   }
 }
