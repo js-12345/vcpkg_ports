@@ -77,6 +77,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "pango"                 WITH_PANGO
         "rsvg"                  WITH_RSVG
         "tiff"                  WITH_TIFF
+        "webp"                  WITH_WEBP
 )
 
 # create feature adding macros
@@ -133,6 +134,7 @@ im_add_configure_with_var  ("xml"        ${WITH_XML})
 im_add_configure_with_var  ("pango"      ${WITH_PANGO})
 im_add_configure_with_var  ("rsvg"       ${WITH_RSVG})
 im_add_configure_with_var  ("tiff"       ${WITH_TIFF})
+im_add_configure_with_var  ("webp"       ${WITH_WEBP})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
@@ -140,7 +142,6 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-jbig"
     "--without-jxl"
     "--without-openexr"
-    "--without-webp"
 )
 
 # -------------------------------
