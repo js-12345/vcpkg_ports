@@ -1,0 +1,44 @@
+diff --git a/configure.ac b/configure.ac
+index 5bafe3c08..d4d31ce8d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2519,6 +2519,39 @@ if test "$with_jxl" != 'no'; then
+   AC_MSG_RESULT([])
+ fi
+ 
++if test "$have_jxl" = 'yes'; then
++  AC_MSG_CHECKING([whether JPEG-XL linker flags work as provided])
++
++  jxl_saved_libs="$LIBS"
++  JXL_LIBS_WITHOUT_M=`echo "$JXL_LIBS" | sed 's/ -lm//g'`
++  LIBS="$JXL_LIBS $LIBS"
++
++  AC_LINK_IFELSE(
++    [AC_LANG_PROGRAM([], [])],
++    [AC_MSG_RESULT([yes])],
++    [
++      AC_MSG_RESULT([no])
++      AC_MSG_CHECKING([whether JPEG-XL linker flags work without -lm flag])
++
++      LIBS="$JXL_LIBS_WITHOUT_M $jxl_saved_libs"
++      AC_LINK_IFELSE(
++        [AC_LANG_PROGRAM([], [])],
++        [
++          AC_MSG_RESULT([yes])
++          JXL_LIBS="$JXL_LIBS_WITHOUT_M"
++        ],
++        [
++          AC_MSG_RESULT([no])
++          have_jxl='no'
++          JXL_CFLAGS=''
++          JXL_LIBS=''
++          JXL_PKG=''
++        ]
++      )
++    ]
++  )
++fi
++
+ if test "$have_jxl" = 'yes'; then
+   AC_DEFINE([JXL_DELEGATE],[1],[Define if you have jpeg-xl library])
+   CFLAGS="$JXL_CFLAGS $CFLAGS"

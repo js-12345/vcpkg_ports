@@ -4,7 +4,7 @@
   "description": "Tools and libraries to create, edit, compose, and convert images",
   "homepage": "https://imagemagick.org",
   "license": "ImageMagick",
-  "default-features": ["hdri","pthread","bzip2","zlib","zstd","lzma","zip","png","freetype","fontconfig","raqm","jpeg","openjp2","heif","lcms","raw","xml","pango","tiff","webp","openexr"],
+  "default-features": ["hdri","pthread","bzip2","zlib","zstd","lzma","zip","png","freetype","fontconfig","raqm","jpeg","openjp2","heif","lcms","raw","xml","pango","tiff","webp","openexr","jxl"],
   "features": {
     "disable-zero-config": {
       "description": "Use external XML configuration files (policy limits, delegate commands, color/MIME tables) instead of the compiled-in zero-configuration defaults. The consumer is responsible for making these files discoverable at runtime (e.g. via environment variables)."
@@ -139,6 +139,10 @@
     "openexr": {
         "description": "Enable openexr support",
         "dependencies": ["openexr"]
+    },
+    "jxl": {
+        "description": "Enable libjxl support",
+        "dependencies": ["libjxl"]
     }
   }
 }
