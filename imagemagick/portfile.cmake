@@ -81,6 +81,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "webp"                  WITH_WEBP
         "openexr"               WITH_OPENEXR
         "jxl"                   WITH_JXL
+        "gdi32"                 WITH_GDI32
 )
 
 # create feature adding macros
@@ -140,10 +141,10 @@ im_add_configure_with_var  ("tiff"       ${WITH_TIFF})
 im_add_configure_with_var  ("webp"       ${WITH_WEBP})
 im_add_configure_with_var  ("openexr"    ${WITH_OPENEXR})
 im_add_configure_with_var  ("jxl"        ${WITH_JXL})
+im_add_configure_with_var  ("gdi32"      ${WITH_GDI32})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--without-gdi32"
     "--without-jbig"
 )
 
