@@ -30,7 +30,8 @@
     {
       "name": "gdi32",
       "platform": "windows"
-    }
+    },
+    "jbig"
   ],
   "features": {
     "disable-zero-config": {
@@ -174,6 +175,10 @@
     "gdi32": {
         "description": "Enable wingdi32 support",
         "supports": "windows"
+    },
+    "jbig": {
+        "description": "Enable jbigkit support",
+        "dependencies": ["jbigkit"]
     }
   }
 }

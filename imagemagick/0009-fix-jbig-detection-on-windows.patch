@@ -1,0 +1,37 @@
+diff --git a/configure.ac b/configure.ac
+index 5bafe3c08..87e6723b0 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2419,7 +2419,23 @@ if test "$with_jbig" != 'no'; then
+     failed=0
+     passed=0
+     AC_CHECK_HEADER([jbig.h],[passed=`expr $passed + 1`],[failed=`expr $failed + 1`])
+-    AC_CHECK_LIB([jbig],[jbg_dec_init],[passed=`expr $passed + 1`],[failed=`expr $failed + 1`],[])
++    AC_CHECK_LIB([jbig],[jbg_dec_init],
++        [
++            passed=`expr $passed + 1`
++            JBIG_LIBS='-ljbig'
++        ],
++        [
++            AC_CHECK_LIB([libjbig],[jbg_dec_init],
++                [
++                    passed=`expr $passed + 1`
++                    JBIG_LIBS='-llibjbig'
++                ],
++                [failed=`expr $failed + 1`],
++                []
++            )
++        ],
++        []
++    )
+ 
+     AC_MSG_CHECKING([if JBIG package is complete])
+     if test $passed -gt 0; then
+@@ -2427,7 +2443,6 @@ if test "$with_jbig" != 'no'; then
+             AC_MSG_RESULT([no -- some components failed test])
+             have_jbig='no (failed tests)'
+         else
+-            JBIG_LIBS='-ljbig'
+             LIBS="$JBIG_LIBS $LIBS"
+             AC_DEFINE([JBIG_DELEGATE],[1],[Define if you have JBIG library])
+             AC_MSG_RESULT([yes])

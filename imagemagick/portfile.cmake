@@ -18,6 +18,7 @@ vcpkg_from_github(
         0006-fix-openmp-lib-detection-windows.patch
         0007-fix-bzip2-detection-windows.patch
         0008-fix-jxl-libs-on-windows.patch
+        0009-fix-jbig-detection-on-windows.patch
 )
 
 # -------------------------------
@@ -82,6 +83,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "openexr"               WITH_OPENEXR
         "jxl"                   WITH_JXL
         "gdi32"                 WITH_GDI32
+        "jbig"                  WITH_JBIG
 )
 
 # create feature adding macros
@@ -142,10 +144,10 @@ im_add_configure_with_var  ("webp"       ${WITH_WEBP})
 im_add_configure_with_var  ("openexr"    ${WITH_OPENEXR})
 im_add_configure_with_var  ("jxl"        ${WITH_JXL})
 im_add_configure_with_var  ("gdi32"      ${WITH_GDI32})
+im_add_configure_with_var  ("jbig"       ${WITH_JBIG})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
-    "--without-jbig"
 )
 
 # -------------------------------
