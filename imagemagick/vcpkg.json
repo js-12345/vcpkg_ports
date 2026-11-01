@@ -179,6 +179,10 @@
     "jbig": {
         "description": "Enable jbigkit support",
         "dependencies": ["jbigkit"]
+    },
+    "gvc": {
+        "description": "Enable graphviz support",
+        "dependencies": ["graphviz"]
     }
   }
 }
