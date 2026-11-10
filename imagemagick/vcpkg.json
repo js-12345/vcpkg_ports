@@ -34,8 +34,11 @@
     "jbig"
   ],
   "features": {
+    "tools": {
+        "description": "build tools/utilities"
+    },
     "disable-zero-config": {
-      "description": "Use external XML configuration files (policy limits, delegate commands, color/MIME tables) instead of the compiled-in zero-configuration defaults. The consumer is responsible for making these files discoverable at runtime (e.g. via environment variables)."
+        "description": "Use external XML configuration files (policy limits, delegate commands, color/MIME tables) instead of the compiled-in zero-configuration defaults. The consumer is responsible for making these files discoverable at runtime (e.g. via environment variables)."
     },
     "hdri": {
         "description": "High Dynamic Range Imaging: Quantum is a floating-point type, so pixel values can leave the normal range without clipping. Uses more memory. Changes the library ABI suffix."

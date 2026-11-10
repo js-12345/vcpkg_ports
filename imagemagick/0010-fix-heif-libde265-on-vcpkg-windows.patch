@@ -1,0 +1,45 @@
+diff --git a/configure.ac b/configure.ac
+index d3768cb30..e6985d1f8 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -2387,6 +2387,40 @@ HEIF_PKG=""
+ if test "x$with_heic" = "xyes"; then
+   AC_MSG_RESULT([-------------------------------------------------------------])
+   PKG_CHECK_MODULES([HEIF],[libheif >= 1.4.0],[have_heic=yes],[have_heic=no])
++
++  if test "$have_heic" = 'yes'; then
++    AC_MSG_CHECKING([whether libheif flags work as provided])
++
++    heif_saved_libs="$LIBS"
++    HEIF_LIBS_WITH_LIB_PREFIX=`echo "$HEIF_LIBS" | sed 's/ -lde265/ -llibde265/g'`
++    LIBS="$HEIF_LIBS $LIBS"
++
++    AC_LINK_IFELSE(
++      [AC_LANG_PROGRAM([], [])],
++      [AC_MSG_RESULT([yes])],
++      [
++        AC_MSG_RESULT([no])
++        AC_MSG_CHECKING([whether libheif linker flags work with changed libde265 flag])
++
++        LIBS="$HEIF_LIBS_WITH_LIB_PREFIX $heif_saved_libs"
++        AC_LINK_IFELSE(
++          [AC_LANG_PROGRAM([], [])],
++          [
++            AC_MSG_RESULT([yes])
++            HEIF_LIBS="$HEIF_LIBS_WITH_LIB_PREFIX"
++          ],
++          [
++            AC_MSG_RESULT([no])
++            have_heic='no'
++            HEIF_CFLAGS=''
++            HEIF_LIBS=''
++            HEIF_PKG=''
++          ]
++        )
++      ]
++    )
++  fi
++
+   AC_MSG_RESULT([])
+ fi
+ 

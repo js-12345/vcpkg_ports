@@ -1,5 +1,14 @@
 
 # -------------------------------
+# current bugs/problems in vcpkg, some are fixed with patches
+# -------------------------------
+# - libjxl.pc       has on windows     -lm which is not needed and found            (fixed with patches)
+# - libde265.pc     has on windows     -lde265 but lib is called/named libde265.lib (fixed with patches)
+# - libraw.pc       has on windows dbg -lraw   but lib is called/named rawd.lib     (manual fix)
+# - libraw_r.pc     has on windows dbg -lraw_r but lib is called/named raw_rd.lib   (manual fix)
+
+
+# -------------------------------
 # download source from github repo, current version 7
 # -------------------------------
 
@@ -19,6 +28,8 @@ vcpkg_from_github(
         0007-fix-bzip2-detection-windows.patch
         0008-fix-jxl-libs-on-windows.patch
         0009-fix-jbig-detection-on-windows.patch
+        0010-fix-heif-libde265-on-vcpkg-windows.patch
+        0011-fix-install-of-utilities.patch
 )
 
 # -------------------------------
@@ -29,7 +40,6 @@ vcpkg_from_github(
 set(IM_CONFIGURE_ARGS "")
 list(APPEND IM_CONFIGURE_ARGS
     "--disable-docs"
-    "--without-utilities"
     "--without-perl"
     "--disable-installed"
     "--without-modules"
@@ -53,6 +63,7 @@ set(QUANTUM_DEPTH 16) # 16 is default
 # search for features
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
+        "tools"                 WITH_UTILITIES
         "disable-zero-config"   DISABLE_ZERO_CONFIG
         "hdri"                  ENABLE_HDRI
         "q8"                    USE_Q_8
@@ -118,6 +129,7 @@ endforeach()
 list(APPEND IM_CONFIGURE_ARGS "--with-quantum-depth=${QUANTUM_DEPTH}")
 
 # features enabling/disabling/with/without from vcpkg feature
+im_add_configure_with_var  ("utilities"  ${WITH_UTILITIES})
 im_add_configure_enable_var("zero-configuration" NOT ${DISABLE_ZERO_CONFIG})
 im_add_configure_enable_var("hdri"       ${ENABLE_HDRI})
 im_add_configure_with_var  ("threads"    ${WITH_PTHREAD})
