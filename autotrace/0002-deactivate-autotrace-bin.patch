@@ -1,0 +1,13 @@
+diff --git a/Makefile.am b/Makefile.am
+index ea6eadd..05da03a 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -24,7 +24,7 @@ AUTOMAKE_OPTIONS = foreign no-dependencies
+ 
+ autotraceincludedir=$(includedir)/autotrace
+ lib_LTLIBRARIES=libautotrace.la
+-bin_PROGRAMS=autotrace
++bin_PROGRAMS=
+ 
+ if HAVE_MAGICK
+ input_magick_src=src/input-magick.h src/input-magick.c

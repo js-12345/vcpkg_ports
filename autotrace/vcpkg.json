@@ -1,0 +1,10 @@
+{
+    "name": "autotrace",
+    "version": "0.31.10",
+    "description": "Converts bitmaps to vector graphics",
+    "homepage": "https://github.com/autotrace/autotrace",
+    "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
+    "dependencies": [
+        "glib"
+    ]
+}

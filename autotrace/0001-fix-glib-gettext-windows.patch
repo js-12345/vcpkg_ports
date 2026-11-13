@@ -1,0 +1,37 @@
+diff --git a/Makefile.am b/Makefile.am
+index ea6eadd..f27dbba 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,4 +1,4 @@
+-SUBDIRS = po
++SUBDIRS =
+ man_MANS = autotrace.1
+ EXTRA_DIST=$(man_MANS) \
+ 	   FAQ \
+diff --git a/configure.ac b/configure.ac
+index 43b6fea..6ea84ce 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -54,13 +54,8 @@ AM_SANITY_CHECK
+ AC_PROG_INSTALL
+ AC_CHECK_HEADERS(malloc.h)
+ 
+-IT_PROG_INTLTOOL([0.50.1])
+-AM_GNU_GETTEXT_VERSION([0.19.3])
+-AM_GNU_GETTEXT([external])
+ AC_SUBST([GETTEXT_PACKAGE], [$PACKAGE_NAME])
+ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Define to the gettext package name.])
+-ALL_LINGUAS="ja de"
+-AM_GLIB_GNU_GETTEXT
+ 
+ AC_CHECK_FUNCS([localtime_r])
+ 
+@@ -209,7 +204,7 @@ else
+ fi
+ 
+ dnl po/Makefile.in FIXME FIXME FIXME
+-AC_CONFIG_FILES([po/Makefile.in Makefile autotrace.pc])
++AC_CONFIG_FILES([Makefile autotrace.pc])
+ AC_OUTPUT
+ 
+ echo "

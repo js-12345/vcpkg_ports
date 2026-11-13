@@ -1,0 +1,13 @@
+diff --git a/src/output-ild.c b/src/output-ild.c
+index bb33bb8..3757332 100644
+--- a/src/output-ild.c
++++ b/src/output-ild.c
+@@ -359,7 +359,7 @@ static unsigned char ilda_standard_color_palette[256][3] = {
+   {0, 0, 0}                     // Black
+ };
+ 
+-#ifdef _WINDOWS
++#if 0
+ // no Windows compiler seems to have rint(), although it is C99
+ int rint(double x)
+ {

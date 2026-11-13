@@ -1,0 +1,13 @@
+diff --git a/src/input-bmp.c b/src/input-bmp.c
+index ea7b7fe..a262af2 100644
+--- a/src/input-bmp.c
++++ b/src/input-bmp.c
+@@ -549,7 +549,7 @@ ReadChannelMasks(unsigned int       *tmp,
+ 		masks[i].max_value = (float)((1 << nbits) - 1);
+ 
+ #ifdef _DEBUG
+-		LOG4("Channel %d mask %08x in %d max_val %d\n",
++		LOG("Channel %d mask %08x in %d max_val %d\n",
+ 			i, masks[i].mask, masks[i].shiftin, (int)masks[i].max_value);
+ #endif
+ 	}
