@@ -1,0 +1,6 @@
+{
+  "name": "djvulibre",
+  "version": "3.5.27.1",
+  "description": "Open-source library and tools for viewing and processing DjVu documents",
+  "homepage": "https://djvu.sourceforge.net/"
+}

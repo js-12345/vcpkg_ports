@@ -1,0 +1,97 @@
+diff --git a/configure.ac b/configure.ac
+index b5411b8..7954dd6 100755
+--- a/configure.ac
++++ b/configure.ac
+@@ -91,7 +91,15 @@ elif test x$have_os_apple = xyes && test -d /sw ; then
+     LDFLAGS="$LDFLAGS -L/sw/lib"
+ fi
+ 
+-
++DJVU_CFLAGS=""
++if test "x${have_os_win32}" = 'xyes'; then
++    if test "x${enable_static}" = 'xyes'; then
++        CFLAGS="$CFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
++        CXXFLAGS="$CXXFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
++        DJVU_CFLAGS="$DJVU_CFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
++    fi
++fi
++AC_SUBST([DJVU_CFLAGS])
+ 
+ # ----------------------------------------
+ # Programs
+diff --git a/libdjvu/DjVuGlobal.h b/libdjvu/DjVuGlobal.h
+index c93d8b8..49ece88 100644
+--- a/libdjvu/DjVuGlobal.h
++++ b/libdjvu/DjVuGlobal.h
+@@ -71,10 +71,12 @@
+ #endif
+ 
+ #ifdef _WIN32
+-# ifdef DJVUAPI_EXPORT
+-#  define DJVUAPI __declspec(dllexport)
+-# else
+-#  define DJVUAPI __declspec(dllimport)
++# ifndef DJVUAPI_STATIC
++#  ifdef DJVUAPI_EXPORT
++#   define DJVUAPI __declspec(dllexport)
++#  else
++#   define DJVUAPI __declspec(dllimport)
++#  endif
+ # endif
+ #endif
+ #ifndef DJVUAPI
+diff --git a/libdjvu/Makefile.am b/libdjvu/Makefile.am
+index 2066c8e..a325413 100644
+--- a/libdjvu/Makefile.am
++++ b/libdjvu/Makefile.am
+@@ -46,7 +46,7 @@ sed_process = $(SED) \
+  -e 's,@includedir\@,$(includedir),g' \
+  -e 's,@Libs\@,-L$(libdir) -ldjvulibre,g' \
+  -e 's,@Libsprivate\@,$(JPEG_LIBS) $(PTHREAD_LIBS) $(LIBS),g' \
+- -e 's,@Cflags\@,-I$(includedir) $(JPEG_CFLAGS) $(PTHREAD_CFLAGS),g' \
++ -e 's,@Cflags\@,-I$(includedir) $(DJVU_CFLAGS) $(JPEG_CFLAGS) $(PTHREAD_CFLAGS),g' \
+  < $< > $@ || (rm $@; exit 1)
+ 
+ pc_verbose = $(pc_verbose_@AM_V@)
+diff --git a/libdjvu/ddjvuapi.h b/libdjvu/ddjvuapi.h
+index 4f9ed56..328087e 100644
+--- a/libdjvu/ddjvuapi.h
++++ b/libdjvu/ddjvuapi.h
+@@ -70,10 +70,12 @@ extern "C" {
+ 
+ #ifndef DDJVUAPI
+ # ifdef _WIN32
+-#  ifdef DDJVUAPI_EXPORT
+-#   define DDJVUAPI __declspec(dllexport)
+-#  else
+-#   define DDJVUAPI __declspec(dllimport)
++#  ifndef DJVUAPI_STATIC
++#   ifdef DDJVUAPI_EXPORT
++#    define DDJVUAPI __declspec(dllexport)
++#   else
++#    define DDJVUAPI __declspec(dllimport)
++#   endif
+ #  endif
+ # endif
+ #endif
+diff --git a/libdjvu/miniexp.h b/libdjvu/miniexp.h
+index d22ce92..3517e0c 100644
+--- a/libdjvu/miniexp.h
++++ b/libdjvu/miniexp.h
+@@ -28,10 +28,12 @@ extern "C" {
+ 
+ #ifndef MINILISPAPI
+ # ifdef _WIN32
+-#  ifdef MINILISPAPI_EXPORT
+-#   define MINILISPAPI __declspec(dllexport)
+-#  else
+-#   define MINILISPAPI __declspec(dllimport)
++#  ifndef MINILISPAPI_STATIC
++#   ifdef MINILISPAPI_EXPORT
++#    define MINILISPAPI __declspec(dllexport)
++#   else
++#    define MINILISPAPI __declspec(dllimport)
++#   endif
+ #  endif
+ # endif
+ #endif
