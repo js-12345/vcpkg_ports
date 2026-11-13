@@ -45,7 +45,6 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-modules"
     "--disable-opencl"
     "--without-x"
-    "--without-autotrace"
     "--without-dps"
     "--without-flif"
     "--without-fpx"
@@ -95,6 +94,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "gdi32"                 WITH_GDI32
         "jbig"                  WITH_JBIG
         "gvc"                   WITH_GVC
+        "autotrace"             WITH_AUTOTRACE
 )
 
 # create feature adding macros
@@ -158,6 +158,7 @@ im_add_configure_with_var  ("jxl"        ${WITH_JXL})
 im_add_configure_with_var  ("gdi32"      ${WITH_GDI32})
 im_add_configure_with_var  ("jbig"       ${WITH_JBIG})
 im_add_configure_with_var  ("gvc"        ${WITH_GVC})
+im_add_configure_with_var  ("autotrace"  ${WITH_AUTOTRACE})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS

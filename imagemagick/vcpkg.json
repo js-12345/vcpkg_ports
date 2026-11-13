@@ -186,6 +186,10 @@
     "gvc": {
         "description": "Enable graphviz support",
         "dependencies": ["graphviz"]
+    },
+    "autotrace": {
+        "description": "Enable autotrace support",
+        "dependencies": ["autotrace"]
     }
   }
 }
