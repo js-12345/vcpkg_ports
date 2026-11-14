@@ -1,12 +1,15 @@
 diff --git a/configure.ac b/configure.ac
-index b5411b8..7954dd6 100755
+index b5411b8..670f9d3 100755
 --- a/configure.ac
 +++ b/configure.ac
-@@ -91,7 +91,15 @@ elif test x$have_os_apple = xyes && test -d /sw ; then
-     LDFLAGS="$LDFLAGS -L/sw/lib"
- fi
+@@ -142,6 +142,20 @@ AC_CXX_MEMBER_TEMPLATES
+ AC_CXX_INTEL_ATOMIC_BUILTINS
+ AC_CXX_GCCTLS
  
--
++# ----------------------------------------
++# Setting CFLAGS
++# ----------------------------------------
++
 +DJVU_CFLAGS=""
 +if test "x${have_os_win32}" = 'xyes'; then
 +    if test "x${enable_static}" = 'xyes'; then
@@ -16,9 +19,10 @@ index b5411b8..7954dd6 100755
 +    fi
 +fi
 +AC_SUBST([DJVU_CFLAGS])
- 
++
  # ----------------------------------------
- # Programs
+ # Libraries
+ # ----------------------------------------
 diff --git a/libdjvu/DjVuGlobal.h b/libdjvu/DjVuGlobal.h
 index c93d8b8..49ece88 100644
 --- a/libdjvu/DjVuGlobal.h
