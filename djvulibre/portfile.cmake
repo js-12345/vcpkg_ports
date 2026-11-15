@@ -11,6 +11,7 @@ vcpkg_from_github(
     HEAD_REF master
     PATCHES
         0001-fix-declspec-static-windows.patch
+        0002-printout-configuration-into-log.patch
 )
 
 # -------------------------------

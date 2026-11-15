@@ -1,0 +1,62 @@
+diff --git a/configure.ac b/configure.ac
+index b5411b8..3e1c922 100755
+--- a/configure.ac
++++ b/configure.ac
+@@ -270,31 +270,33 @@ desktopfiles/Makefile
+ AC_OUTPUT
+ 
+ # Final message
++AC_MSG_NOTICE([
+ 
+-echo
+-echo "$PACKAGE $VERSION"
+-echo
+-echo "Configuration Options Summary:"
+-echo
+-echo "  OS.................: ${host_os}"
+-echo "  Win32 support......: ${have_os_win32}"
+-echo "  Pthread support....: ${have_pthread}"
+-echo "  Iconv support......: ${ac_has_iconv}"
+-echo "  JPEG support.......: ${have_jpeg}"
+-echo "  TIFF support.......: ${have_tiff}"
+-echo "  XML tools..........: ${want_xmltools}"
+-echo "  Desktop files......: ${ac_desktopfiles}"
+-echo "  Icon generation....: ${conversion_tool}"
+-echo
+-echo "Compilation..........: make (or gmake)"
+-echo "  CPPFLAGS...........: $CPPFLAGS"
+-echo "  CFLAGS.............: $CFLAGS"
+-echo "  CXXFLAGS...........: $CXXFLAGS"
+-echo "  LDFLAGS............: $LDFLAGS"
+-echo
+-echo "Installation...........: make install (as root if needed, with 'su' or 'sudo')"
+-echo "  prefix...............: $prefix"
+-echo
++$PACKAGE $VERSION
++
++Configuration Options Summary:
++
++  OS.................: ${host_os}
++  Win32 support......: ${have_os_win32}
++  Pthread support....: ${have_pthread}
++  Iconv support......: ${ac_has_iconv}
++  JPEG support.......: ${have_jpeg}
++  TIFF support.......: ${have_tiff}
++  XML tools..........: ${want_xmltools}
++  Desktop files......: ${ac_desktopfiles}
++  Icon generation....: ${conversion_tool}
++
++Compilation..........: make (or gmake)
++  CPPFLAGS...........: $CPPFLAGS
++  CFLAGS.............: $CFLAGS
++  CXXFLAGS...........: $CXXFLAGS
++  LDFLAGS............: $LDFLAGS
++  LIBS...............: $LIBS
++
++Installation...........: make install (as root if needed, with 'su' or 'sudo')
++  prefix...............: $prefix
++
++])
+ 
+ # ----------------------------------------
+ # Stuff added to config.h
