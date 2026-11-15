@@ -31,7 +31,8 @@
       "name": "gdi32",
       "platform": "windows"
     },
-    "jbig"
+    "jbig",
+    "djvu"
   ],
   "features": {
     "tools": {
