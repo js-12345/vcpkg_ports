@@ -15,6 +15,19 @@ vcpkg_from_github(
 )
 
 # -------------------------------
+# create configure options
+# -------------------------------
+
+# TODO: add jpeg and tiff libs
+
+# set default configure flags
+set(CONFIGURE_ARGS "")
+list(APPEND CONFIGURE_ARGS
+    "--without-jpeg"
+    "--without-tiff"
+)
+
+# -------------------------------
 # run autotools/configure
 # -------------------------------
 
@@ -22,6 +35,9 @@ vcpkg_configure_make(
     SOURCE_PATH "${SOURCE_PATH}"
     USE_WRAPPERS
     AUTOCONFIG
+    OPTIONS
+        ${CONFIGURE_ARGS}
+
 )
 
 # -------------------------------
