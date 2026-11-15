@@ -190,6 +190,10 @@
     "autotrace": {
         "description": "Enable autotrace support",
         "dependencies": ["autotrace"]
+    },
+    "djvu": {
+        "description": "Enable djvulibre support",
+        "dependencies": ["djvulibre"]
     }
   }
 }
