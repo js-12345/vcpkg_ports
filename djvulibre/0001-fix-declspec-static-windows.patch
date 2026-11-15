@@ -1,20 +1,19 @@
 diff --git a/configure.ac b/configure.ac
-index b5411b8..670f9d3 100755
+index b5411b8..eb9c322 100755
 --- a/configure.ac
 +++ b/configure.ac
-@@ -142,6 +142,20 @@ AC_CXX_MEMBER_TEMPLATES
+@@ -142,6 +142,19 @@ AC_CXX_MEMBER_TEMPLATES
  AC_CXX_INTEL_ATOMIC_BUILTINS
  AC_CXX_GCCTLS
  
 +# ----------------------------------------
-+# Setting CFLAGS
++# Setting CPPFLAGS
 +# ----------------------------------------
 +
 +DJVU_CFLAGS=""
 +if test "x${have_os_win32}" = 'xyes'; then
 +    if test "x${enable_static}" = 'xyes'; then
-+        CFLAGS="$CFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
-+        CXXFLAGS="$CXXFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
++        CPPFLAGS="$CPPFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
 +        DJVU_CFLAGS="$DJVU_CFLAGS -DDJVUAPI_STATIC -DMINILISPAPI_STATIC"
 +    fi
 +fi
