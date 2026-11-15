@@ -1,6 +1,13 @@
 {
-  "name": "djvulibre",
-  "version": "3.5.27.1",
-  "description": "Open-source library and tools for viewing and processing DjVu documents",
-  "homepage": "https://djvu.sourceforge.net/"
+    "name": "djvulibre",
+    "version": "3.5.27.1",
+    "description": "Open-source library and tools for viewing and processing DjVu documents",
+    "homepage": "https://djvu.sourceforge.net/",
+    "default-features": ["jpeg"],
+    "features": {
+        "jpeg": {
+            "description": "build with jpeg feature",
+            "dependencies": ["libjpeg-turbo"]
+        }
+    }
 }

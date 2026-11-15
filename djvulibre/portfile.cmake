@@ -12,20 +12,26 @@ vcpkg_from_github(
     PATCHES
         0001-fix-declspec-static-windows.patch
         0002-printout-configuration-into-log.patch
+        0003-using-pkg-config-for-lib-searches.patch
 )
 
 # -------------------------------
 # create configure options
 # -------------------------------
 
-# TODO: add jpeg and tiff libs
-
 # set default configure flags
-set(CONFIGURE_ARGS "")
-list(APPEND CONFIGURE_ARGS
-    "--without-jpeg"
-    "--without-tiff"
+set(CONFIGURE_ARGS "--without-tiff") # libtiff is only used in the tools, not the lib
+
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        "jpeg" WITH_JPEG
 )
+
+if(${WITH_JPEG})
+    list(APPEND CONFIGURE_ARGS "--with-jpeg=yes")
+else()
+    list(APPEND CONFIGURE_ARGS "--with-jpeg=no")
+endif()
 
 # -------------------------------
 # run autotools/configure
@@ -37,7 +43,6 @@ vcpkg_configure_make(
     AUTOCONFIG
     OPTIONS
         ${CONFIGURE_ARGS}
-
 )
 
 # -------------------------------
