@@ -1,0 +1,12 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b5f748e..62d4d81 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -154,7 +154,6 @@ else()
+     # WinUI builds use /MD (DLL CRT), keep the global setting from parent project
+     set(UHDR_ENABLE_STATIC_LINKING OFF)
+   elseif(MSVC)
+-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+     set(UHDR_ENABLE_STATIC_LINKING ON)
+   else()
+     set(UHDR_ENABLE_STATIC_LINKING ON)
