@@ -1,0 +1,45 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a6ed814..c2b53f1 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -462,6 +462,7 @@ if(UHDR_ENABLE_GLES)
+     message(STATUS "Could NOT find EGL")
+   endif()
+   if(EGL_FOUND AND OpenGLES3_FOUND)
++    add_compile_options(${EGL_CFLAGS})
+     add_compile_options(-DUHDR_ENABLE_GLES)
+     string(FIND "${OPENGLES3_LIBRARIES}" "GLESv3" result)
+     if(result GREATER -1)
+diff --git a/cmake/FindEGL.cmake b/cmake/FindEGL.cmake
+index d78b418..147840d 100644
+--- a/cmake/FindEGL.cmake
++++ b/cmake/FindEGL.cmake
+@@ -14,13 +14,24 @@
+ #  EGL_FOUND            - True if EGL library is found, False otherwise
+ #  EGL_LIBRARIES        - EGL library
+ #  EGL_INCLUDE_DIRS     - Include dir
++#  EGL_CFLAGS           - Compiler flags
+ #
+ 
+-find_path(EGL_INCLUDE_DIRS EGL/egl.h)
++find_package(PkgConfig QUIET)
+ 
+-find_library(EGL_LIBRARIES NAMES EGL libEGL)
++if(PKG_CONFIG_FOUND)
++    pkg_check_modules(EGL egl)
++endif()
+ 
+ include(FindPackageHandleStandardArgs)
+-find_package_handle_standard_args(EGL DEFAULT_MSG EGL_INCLUDE_DIRS EGL_LIBRARIES)
++find_package_handle_standard_args(EGL DEFAULT_MSG
++    EGL_LIBRARIES
++    EGL_INCLUDE_DIRS
++)
+ 
+-mark_as_advanced(EGL_INCLUDE_DIRS EGL_LIBRARIES)
++mark_as_advanced(
++    EGL_LIBRARIES
++    EGL_INCLUDE_DIRS
++    EGL_CFLAGS
++    EGL_CFLAGS_OTHER
++)

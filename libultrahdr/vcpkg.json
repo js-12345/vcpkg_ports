@@ -13,6 +13,16 @@
             "name": "vcpkg-cmake-config",
             "host": true
         },
+        {
+            "name": "pkgconf",
+            "host": true
+        },
         "libjpeg-turbo"
-    ]
+    ],
+    "features": {
+        "gles": {
+            "description": "Enable GPU acceleration ",
+            "dependencies": ["egl"]
+        }
+    }
 }
