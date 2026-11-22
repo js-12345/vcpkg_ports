@@ -1,0 +1,10 @@
+diff --git a/libwmf.pc.in b/libwmf.pc.in
+index b558ca5..1afb757 100644
+--- a/libwmf.pc.in
++++ b/libwmf.pc.in
+@@ -7,4 +7,4 @@ Name: libwmf
+ Description: A library for reading and converting Windows MetaFile vector graphics (WMF)
+ Version: @LIBWMF_VERSION@
+ Libs: -lwmf -lwmflite @AM_LDFLAGS@
+-Cflags: @WMF_CONFIG_CFLAGS@
++Cflags: -I${includedir} @WMF_CONFIG_CFLAGS@

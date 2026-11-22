@@ -1,0 +1,21 @@
+diff --git a/src/ipa/ipa/bmp.h b/src/ipa/ipa/bmp.h
+index b103c8f..d3779c7 100644
+--- a/src/ipa/ipa/bmp.h
++++ b/src/ipa/ipa/bmp.h
+@@ -16,6 +16,7 @@
+    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.  */
+ 
++#include <stdint.h>
+ 
+ #ifndef HAVE_GD
+ /* png stuff below adapted from stuff sent to me [fjf] by Lennard D. Rosenthal;
+@@ -66,7 +67,7 @@ static void ldr_bmp_png (wmfAPI* API,wmfBMP_Draw_t* bmp_draw,FILE* out)
+ 		return;
+ 	}
+ 
+-	if (setjmp (png_ptr->jmpbuf))
++	if (setjmp (png_jmpbuf (png_ptr)))
+ 	{	WMF_DEBUG (API,"Failed to write bitmap as PNG! (setjmp failed)");
+ 		png_destroy_write_struct (&png_ptr,&info_ptr);
+ 		wmf_free (API,buffer);

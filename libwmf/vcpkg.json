@@ -1,0 +1,15 @@
+{
+    "name": "libwmf",
+    "version": "0.2.17",
+    "description": "Library for interpreting and converting Windows Metafile formats",
+    "homepage": "https://github.com/caolanm/libwmf",
+    "dependencies": [
+         {
+            "name": "vcpkg-make",
+            "host": true
+        },
+        "freetype",
+        "zlib",
+        "libpng"
+    ]
+}

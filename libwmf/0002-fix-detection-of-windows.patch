@@ -1,0 +1,12 @@
+diff --git a/configure.ac b/configure.ac
+index 9dd0328..aa44bbe 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -110,6 +110,7 @@ AM_CONDITIONAL(LIBWMF_BUILD_ALL,[ test "x$libwmf_build_all" = "xyes" ])
+ GD_DEFS=
+ 
+ dnl Initialize libtool
++AC_CANONICAL_HOST
+ AC_MSG_CHECKING([for Win32])
+ case "$host" in
+   *-*-mingw*)
