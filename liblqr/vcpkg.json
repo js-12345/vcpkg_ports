@@ -1,0 +1,14 @@
+{
+    "name": "liblqr",
+    "version": "0.4.3",
+    "description": "Liquid Rescale library for seam-carving image resizing",
+    "homepage": "https://github.com/carlobaldassi/liblqr/tree/master",
+    "license": "LGPL-3.0-or-later OR GPL-3.0-or-later",
+    "dependencies": [
+         {
+            "name": "vcpkg-make",
+            "host": true
+        },
+        "glib"
+    ]
+}

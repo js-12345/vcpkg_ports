@@ -1,0 +1,38 @@
+diff --git a/configure.ac b/configure.ac
+index f8520a0..eafa58d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -131,6 +131,7 @@ AS_IF([test "x$legacy_macros" = "xfalse"],
+       [:]
+       )
+ 
++PCCFLAGS=""
+ AC_ARG_ENABLE([declspec],
+      [AS_HELP_STRING([--disable-declspec], [Disable Win32 __declspec directives (only meaningful for building static library on MinGW)])],
+      [AS_CASE([["${enableval}"]],
+@@ -140,10 +141,14 @@ AC_ARG_ENABLE([declspec],
+ 	  )],
+      [declspec=true])
+ AS_IF([test "x$declspec" = "xfalse"],
+-      [AC_DEFINE([LQR_DISABLE_DECLSPEC],[],[Disable __declspec directives])],
++      [AC_DEFINE([LQR_DISABLE_DECLSPEC],[],[Disable __declspec directives])
++      PCCFLAGS="-DLQR_DISABLE_DECLSPEC"
++      ],
+       [:]
+       )
+ 
++AC_SUBST([PCCFLAGS])
++
+ 
+ AC_MSG_CHECKING([[if we are on Win32]])
+ AC_LANG([C])
+diff --git a/lqr-1.pc.in b/lqr-1.pc.in
+index 5ced291..6b436c8 100644
+--- a/lqr-1.pc.in
++++ b/lqr-1.pc.in
+@@ -8,4 +8,4 @@ Description: LiquidRescale seam-carving library
+ Requires: glib-2.0
+ Version: @PACKAGE_VERSION@
+ Libs: -l@LIBRARY_SNAME@
+-Cflags: -I${includedir}/@LIBRARY_SNAME@
++Cflags: -I${includedir}/@LIBRARY_SNAME@ @PCCFLAGS@
