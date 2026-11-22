@@ -11,8 +11,6 @@ vcpkg_from_github(
     HEAD_REF main
     PATCHES
         0001-use-crt-from-vcpkg.patch
-        0002-fix-weird-min-error.patch
-        0003-fix-egl-finding.patch
 )
 
 # -------------------------------
@@ -33,22 +31,11 @@ list(APPEND CONFIGURE_ARGS
     "-DUHDR_ENABLE_SMPTE2094_50=OFF"
 )
 
-# add as features???
+# seem to be not compatible with vcpkg
 list(APPEND CONFIGURE_ARGS
+    "-DUHDR_ENABLE_GLES=OFF"
     "-DUHDR_ENABLE_HEIF=OFF"
 )
-
-# search for features
-vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
-    FEATURES
-        "gles" WITH_GLES
-)
-
-if(${WITH_GLES})
-    list(APPEND CONFIGURE_ARGS "-DUHDR_ENABLE_GLES=ON")
-else()
-    list(APPEND CONFIGURE_ARGS "-DUHDR_ENABLE_GLES=OFF")
-endif()
 
 # -------------------------------
 # run cmake
