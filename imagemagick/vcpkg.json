@@ -1,210 +1,210 @@
 {
-  "name": "imagemagick",
-  "version": "7.1.2-18",
-  "description": "Tools and libraries to create, edit, compose, and convert images",
-  "homepage": "https://imagemagick.org",
-  "license": "ImageMagick",
-  "dependencies": [
-     {
-      "name": "vcpkg-make",
-      "host": true
+    "name": "imagemagick",
+    "version": "7.1.2-18",
+    "description": "Tools and libraries to create, edit, compose, and convert images",
+    "homepage": "https://imagemagick.org",
+    "license": "ImageMagick",
+    "dependencies": [
+        {
+            "name": "vcpkg-make",
+            "host": true
+        }
+    ],
+    "default-features": [
+        "hdri",
+        "pthread",
+        "bzip2",
+        "zlib",
+        "zstd",
+        "lzma",
+        "zip",
+        "png",
+        "freetype",
+        "fontconfig",
+        "raqm",
+        "jpeg",
+        "openjp2",
+        "heif",
+        "lcms",
+        "raw",
+        "xml",
+        "pango",
+        "tiff",
+        "webp",
+        "openexr",
+        "jxl",
+        {
+            "name": "gdi32",
+            "platform": "windows"
+        },
+        "jbig",
+        "djvu"
+    ],
+    "features": {
+        "tools": {
+            "description": "build tools/utilities"
+        },
+        "disable-zero-config": {
+            "description": "Use external XML configuration files (policy limits, delegate commands, color/MIME tables) instead of the compiled-in zero-configuration defaults. The consumer is responsible for making these files discoverable at runtime (e.g. via environment variables)."
+        },
+        "hdri": {
+            "description": "High Dynamic Range Imaging: Quantum is a floating-point type, so pixel values can leave the normal range without clipping. Uses more memory. Changes the library ABI suffix."
+        },
+        "q8": {
+            "description": "Use 8 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix."
+        },
+        "q16": {
+            "description": "Use 16 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix. (Default)"
+        },
+        "q32": {
+            "description": "Use 32 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix."
+        },
+        "pthread": {
+            "description": "Enable POSIX threads API support",
+            "dependencies": [
+                {
+                    "name": "pthread-stubs",
+                    "platform": "windows & !mingw"
+                }
+            ]
+        },
+        "openmp": {
+            "description": "Enable OpenMP multi-threading.",
+            "dependencies": [
+                {
+                    "name": "imagemagick",
+                    "features": ["pthread"],
+                    "default-features": false
+                }
+            ]
+        },
+        "bzip2": {
+            "description": "Enable BZip2 compression support",
+            "dependencies": [
+                {
+                    "name": "bzip2",
+                    "default-features": false
+                }
+            ]
+        },
+        "zlib": {
+            "description": "Enable zlib support",
+            "dependencies": ["zlib"]
+        },
+        "zstd": {
+            "description": "Enable zstd support",
+            "dependencies": [
+                {
+                    "name": "zstd",
+                    "default-features": false
+                }
+            ]
+        },
+        "lzma": {
+            "description": "Enable liblzma support",
+            "dependencies": [
+                {
+                    "name": "liblzma",
+                    "default-features": false
+                }
+            ]
+        },
+        "zip": {
+            "description": "Enable libzip support",
+            "dependencies": [
+                {
+                    "name": "libzip",
+                    "default-features": false
+                }
+            ]
+        },
+        "png": {
+            "description": "Enable libpng support",
+            "dependencies": ["libpng"]
+        },
+        "freetype": {
+            "description": "Enable freetype support",
+            "dependencies": ["freetype"]
+        },
+        "fontconfig": {
+            "description": "Enable fontconfig support",
+            "dependencies": ["fontconfig"]
+        },
+        "raqm": {
+            "description": "Enable libraqm support",
+            "dependencies": ["libraqm"]
+        },
+        "jpeg": {
+            "description": "Enable libjpeg-turbo support",
+            "dependencies": ["libjpeg-turbo"]
+        },
+        "openjp2": {
+            "description": "Enable openjpeg support",
+            "dependencies": ["openjpeg"]
+        },
+        "heif": {
+            "description": "Enable libheif support",
+            "dependencies": ["libheif"]
+        },
+        "lcms": {
+            "description": "Enable lcms support",
+            "dependencies": ["lcms"]
+        },
+        "raw": {
+            "description": "Enable libraw support",
+            "dependencies": ["libraw"]
+        },
+        "xml": {
+            "description": "Enable libxml2 support",
+            "dependencies": ["libxml2"]
+        },
+        "pango": {
+            "description": "Enable pango support",
+            "dependencies": ["pango"]
+        },
+        "rsvg": {
+            "description": "Enable librsvg support",
+            "dependencies": ["librsvg"]
+        },
+        "tiff": {
+            "description": "Enable tiff support",
+            "dependencies": ["tiff"]
+        },
+        "webp": {
+            "description": "Enable libwebp support",
+            "dependencies": ["libwebp"]
+        },
+        "openexr": {
+            "description": "Enable openexr support",
+            "dependencies": ["openexr"]
+        },
+        "jxl": {
+            "description": "Enable libjxl support",
+            "dependencies": ["libjxl"]
+        },
+        "gdi32": {
+            "description": "Enable wingdi32 support",
+            "supports": "windows"
+        },
+        "jbig": {
+            "description": "Enable jbigkit support",
+            "dependencies": ["jbigkit"]
+        },
+        "gvc": {
+            "description": "Enable graphviz support",
+            "dependencies": ["graphviz"]
+        },
+        "autotrace": {
+            "description": "Enable autotrace support",
+            "dependencies": ["autotrace"]
+        },
+        "djvu": {
+            "description": "Enable djvulibre support",
+            "dependencies": ["djvulibre"]
+        },
+        "uhdr": {
+            "description": "Enable libuhdr support",
+            "dependencies": ["libultrahdr"]
+        }
     }
-  ],
-  "default-features": [
-    "hdri",
-    "pthread",
-    "bzip2",
-    "zlib",
-    "zstd",
-    "lzma",
-    "zip",
-    "png",
-    "freetype",
-    "fontconfig",
-    "raqm",
-    "jpeg",
-    "openjp2",
-    "heif",
-    "lcms",
-    "raw",
-    "xml",
-    "pango",
-    "tiff",
-    "webp",
-    "openexr",
-    "jxl",
-    {
-      "name": "gdi32",
-      "platform": "windows"
-    },
-    "jbig",
-    "djvu"
-  ],
-  "features": {
-    "tools": {
-        "description": "build tools/utilities"
-    },
-    "disable-zero-config": {
-        "description": "Use external XML configuration files (policy limits, delegate commands, color/MIME tables) instead of the compiled-in zero-configuration defaults. The consumer is responsible for making these files discoverable at runtime (e.g. via environment variables)."
-    },
-    "hdri": {
-        "description": "High Dynamic Range Imaging: Quantum is a floating-point type, so pixel values can leave the normal range without clipping. Uses more memory. Changes the library ABI suffix."
-    },
-    "q8": {
-        "description": "Use 8 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix."
-    },
-    "q16": {
-        "description": "Use 16 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix. (Default)"
-    },
-    "q32": {
-        "description": "Use 32 bit quantum depth, mutually exclusive with other quantom depth options. Changes the library ABI suffix."
-    },
-    "pthread": {
-        "description": "Enable POSIX threads API support",
-        "dependencies": [
-            {
-                "name": "pthread-stubs",
-                "platform": "windows & !mingw"
-            }
-        ]
-    },
-    "openmp": {
-        "description": "Enable OpenMP multi-threading.",
-        "dependencies": [
-            {
-                "name": "imagemagick",
-                "features": ["pthread"],
-                "default-features": false
-            }
-        ]
-    },
-    "bzip2": {
-        "description": "Enable BZip2 compression support",
-        "dependencies": [
-            {
-                "name": "bzip2",
-                "default-features": false
-            }
-        ]
-    },
-    "zlib": {
-        "description": "Enable zlib support",
-        "dependencies": ["zlib"]
-    },
-    "zstd": {
-        "description": "Enable zstd support",
-        "dependencies": [
-            {
-                "name": "zstd",
-                "default-features": false
-            }
-        ]
-    },
-    "lzma": {
-        "description": "Enable liblzma support",
-        "dependencies": [
-            {
-                "name": "liblzma",
-                "default-features": false
-            }
-        ]
-    },
-    "zip": {
-        "description": "Enable libzip support",
-        "dependencies": [
-            {
-                "name": "libzip",
-                "default-features": false
-            }
-        ]
-    },
-    "png": {
-        "description": "Enable libpng support",
-        "dependencies": ["libpng"]
-    },
-    "freetype": {
-        "description": "Enable freetype support",
-        "dependencies": ["freetype"]
-    },
-    "fontconfig": {
-        "description": "Enable fontconfig support",
-        "dependencies": ["fontconfig"]
-    },
-    "raqm": {
-        "description": "Enable libraqm support",
-        "dependencies": ["libraqm"]
-    },
-    "jpeg": {
-        "description": "Enable libjpeg-turbo support",
-        "dependencies": ["libjpeg-turbo"]
-    },
-    "openjp2": {
-        "description": "Enable openjpeg support",
-        "dependencies": ["openjpeg"]
-    },
-    "heif": {
-        "description": "Enable libheif support",
-        "dependencies": ["libheif"]
-    },
-    "lcms": {
-        "description": "Enable lcms support",
-        "dependencies": ["lcms"]
-    },
-    "raw": {
-        "description": "Enable libraw support",
-        "dependencies": ["libraw"]
-    },
-    "xml": {
-        "description": "Enable libxml2 support",
-        "dependencies": ["libxml2"]
-    },
-    "pango": {
-        "description": "Enable pango support",
-        "dependencies": ["pango"]
-    },
-    "rsvg": {
-        "description": "Enable librsvg support",
-        "dependencies": ["librsvg"]
-    },
-    "tiff": {
-        "description": "Enable tiff support",
-        "dependencies": ["tiff"]
-    },
-    "webp": {
-        "description": "Enable libwebp support",
-        "dependencies": ["libwebp"]
-    },
-    "openexr": {
-        "description": "Enable openexr support",
-        "dependencies": ["openexr"]
-    },
-    "jxl": {
-        "description": "Enable libjxl support",
-        "dependencies": ["libjxl"]
-    },
-    "gdi32": {
-        "description": "Enable wingdi32 support",
-        "supports": "windows"
-    },
-    "jbig": {
-        "description": "Enable jbigkit support",
-        "dependencies": ["jbigkit"]
-    },
-    "gvc": {
-        "description": "Enable graphviz support",
-        "dependencies": ["graphviz"]
-    },
-    "autotrace": {
-        "description": "Enable autotrace support",
-        "dependencies": ["autotrace"]
-    },
-    "djvu": {
-        "description": "Enable djvulibre support",
-        "dependencies": ["djvulibre"]
-    },
-    "uhdr": {
-        "description": "Enable libuhdr support",
-        "dependencies": ["libultrahdr"]
-    }
-  }
 }
