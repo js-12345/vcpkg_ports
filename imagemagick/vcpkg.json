@@ -38,7 +38,8 @@
             "platform": "windows"
         },
         "jbig",
-        "djvu"
+        "djvu",
+        "lqr"
     ],
     "features": {
         "tools": {
@@ -205,6 +206,10 @@
         "uhdr": {
             "description": "Enable libuhdr support",
             "dependencies": ["libultrahdr"]
+        },
+        "lqr": {
+            "description": "Enable liblqr (Liquid Rescale library) support",
+            "dependencies": ["liblqr"]
         }
     }
 }

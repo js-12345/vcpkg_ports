@@ -50,7 +50,6 @@ list(APPEND IM_CONFIGURE_ARGS
     "--without-fpx"
     "--without-gslib"
     "--without-dmr"
-    "--without-lqr"
     "--without-wmf"
     "--without-fftw"
 )
@@ -95,6 +94,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         "autotrace"             WITH_AUTOTRACE
         "djvu"                  WITH_DJVU
         "uhdr"                  WITH_UHDR
+        "lqr"                   WITH_LQR
 )
 
 # create feature adding macros
@@ -161,6 +161,7 @@ im_add_configure_with_var  ("gvc"        ${WITH_GVC})
 im_add_configure_with_var  ("autotrace"  ${WITH_AUTOTRACE})
 im_add_configure_with_var  ("djvu"       ${WITH_DJVU})
 im_add_configure_with_var  ("uhdr"       ${WITH_UHDR})
+im_add_configure_with_var  ("lqr"        ${WITH_LQR})
 
 # to be added into features
 list(APPEND IM_CONFIGURE_ARGS
