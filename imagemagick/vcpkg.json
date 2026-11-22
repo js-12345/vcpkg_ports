@@ -4,6 +4,12 @@
   "description": "Tools and libraries to create, edit, compose, and convert images",
   "homepage": "https://imagemagick.org",
   "license": "ImageMagick",
+  "dependencies": [
+     {
+      "name": "vcpkg-make",
+      "host": true
+    }
+  ],
   "default-features": [
     "hdri",
     "pthread",

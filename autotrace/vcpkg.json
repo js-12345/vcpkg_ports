@@ -5,6 +5,10 @@
     "homepage": "https://github.com/autotrace/autotrace",
     "license": "GPL-2.0-or-later AND LGPL-2.1-or-later",
     "dependencies": [
-        "glib"
+        "glib",
+         {
+            "name": "vcpkg-make",
+            "host": true
+        }
     ]
 }
